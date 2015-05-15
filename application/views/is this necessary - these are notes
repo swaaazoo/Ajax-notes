@@ -1,9 +1,0 @@
-<?php 
-				if(isset($notes))
-					{ 
-						foreach($notes AS $note) { ?>
-							<div class="col-xs-2 box">
-								<?= $note['note'] ?>
-							</div>
-<?php					}  
-					}?>

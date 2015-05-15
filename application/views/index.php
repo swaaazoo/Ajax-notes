@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Ajax Notes</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -15,8 +16,7 @@
 			$(this).serialize(),
 			function(output){
 				$('.notearea').append(
-					'<div class="col-xs-3 fulldelete">'+
-						'<div class="col-xs-10">'+
+					'<div class="col-sm-3 fulldelete">'+
 							'<form class="form-horizontal update" action="/notes/updateNote" method="POST">'+
 								'<label>'+output.title+'</label>'+
 								'<textarea name="description" placeholder="Enter note here" class="desc" cols="20" rows="4"></textarea>'+
@@ -26,7 +26,6 @@
 								'<input type="submit" class="btn btn-link" value="Delete">'+
 								'<input type="hidden" name="id" value='+output.id+'>'+
 							'</form>'+
-						'</div>'+
 					'</div>'
 				);
 			},
@@ -60,7 +59,7 @@
 
 	</script>
 
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 	<style type="text/css">
 		* {
 			margin: 0 auto;
@@ -72,13 +71,14 @@
 			min-height: 300;
 			margin: 40px;
 		}
-		.col-xs-10 {
-			padding: 0;
-		}
 		label {
 			width: 215px;
-			height: 50px;
+			height: 30px;
 			vertical-align: bottom;
+		}
+		.fulldelete {
+			margin-top: 30px;
+			min-height: 50px;
 		}
 	</style>
 </head>
@@ -90,8 +90,7 @@
 	if(isset($allNotes)){
 		foreach($allNotes AS $note){ 
 ?>
-			<div class="col-xs-3 fulldelete">  <!-- a note -->
-				<div class="col-xs-10"> <!--  title/desc -->
+			<div class="col-sm-3 fulldelete">  <!-- a note -->
 					<form class="form-horizontal update" action="/notes/updateNote" method="POST">
 						<label><?=  $note['title'] ?></label>
 						<textarea name="description" placeholder="Enter note here" class="desc" cols="28" rows="4"><?=  $note['description'] ?></textarea>
@@ -101,7 +100,6 @@
 						<input type="submit" class="btn btn-link" value="Delete">
 						<input type="hidden" name="id" value="<?=$note['id']?>">
 					</form>
-				</div>  <!--  END title/desc -->
 			</div> <!-- END a note -->
 <?php }
 	}
@@ -109,7 +107,7 @@
 	</div>
 
 	<div class="row create">
-		<div class="col-xs-3">
+		<div class="col-sm-3">
 			<h4>Notes:</h4>
 			<form class="form-horizontal" id="add" action="/notes/addNote" method="POST">
 				<div class="form-group">
